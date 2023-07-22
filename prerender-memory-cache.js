@@ -63,7 +63,7 @@ module.exports = {
 
 	init: function() {
 		this.cache = cacheManager.caching({
-			store: 'memory', max: process.env.CACHE_MAXSIZE || 1000, ttl: process.env.CACHE_TTL || 60 * 60 * 24 * 3 /*seconds*/
+			store: 'memory', max: process.env.CACHE_MAXSIZE || 1000, ttl: process.env.CACHE_TTL || 60 * 60 * 24 * 10 /*seconds*/
 		});
 		cache = this.cache;
 		setInterval(updateStat, (60 * 10 *  1) * 1000); // each 10 min
