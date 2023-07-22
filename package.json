@@ -6,7 +6,6 @@
   },
   "dependencies": {
     "prerender": "^5.20.2",
-    "prerender-memory-cache": "^1.0.2",
     "start": "^5.1.0"
   }
 }
