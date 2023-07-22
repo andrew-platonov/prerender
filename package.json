@@ -1,0 +1,13 @@
+{
+  "name": "prerender-plus-memory-cache",
+  "version": "1.0.0",
+  "script": {
+    "start": "node ./server.js"
+  },
+  "dependencies": {
+    "cache-manager": "^2.6.0",
+    "node-telegram-bot-api": "^0.61.0",
+    "prerender": "^5.20.2",
+    "start": "^5.1.0"
+  }
+}
