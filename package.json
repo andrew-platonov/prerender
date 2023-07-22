@@ -5,6 +5,7 @@
     "start": "node ./server.js"
   },
   "dependencies": {
+    "cache-manager": "^2.6.0",
     "prerender": "^5.20.2",
     "start": "^5.1.0"
   }
