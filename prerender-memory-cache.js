@@ -68,6 +68,7 @@ module.exports = {
 		cache = this.cache;
 		setInterval(updateStat, (60 * 10 *  1) * 1000); // each 10 min
 		setInterval(sendStat  , (60 * 60 * 24) * 1000); // once a day
+		bot.sendMessage(chatId, `Prerender started!`);
 	},
 
 	requestReceived: function(req, res, next) {
