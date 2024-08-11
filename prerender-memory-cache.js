@@ -4,6 +4,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const token = '6580099025:AAHPCIXg6ml5waXlm6lgutS5ZsklHh0Mf98';
 const chatId = -749894895;
 const bot = new TelegramBot(token, {polling: true});
+const help = 'Commands:\n`help` - get help;\n`stat` - get current statistics;\n`update` - update statistics.';
 
 var stat = {
 	totalHits: 0, 
@@ -55,8 +56,16 @@ Last (started at ${new Date(stat.start).toLocaleString('ru-ru')})
 
 bot.on('message', (msg) => {
 	console.log(msg);
-	bot.sendMessage(msg.chat.id, `Message: ${JSON.stringify(msg)}\n\nCurrent statistics: ${JSON.stringify(stat)}`);
-	bot.sendMessage(msg.chat.id, getHumanStatistics());
+	if( msg.text == `update` ) {
+		updateStat();
+		bot.sendMessage(msg.chat.id, `Statistics is being updated.`)
+	} else if( msg.text == `stat` ) {
+		bot.sendMessage(msg.chat.id, getHumanStatistics())
+	} else if ( msg.text == `help`) {
+		bot.sendMessage(msg.chat.id, help)
+	} else {
+		bot.sendMessage(msg.chat.id, `Command is not recognized.\n\nMessage: ${JSON.stringify(msg)}\n\n${help}`)
+	}
 });
 
 module.exports = {
@@ -68,7 +77,7 @@ module.exports = {
 		cache = this.cache;
 		setInterval(updateStat, (60 * 10 *  1) * 1000); // each 10 min
 		setInterval(sendStat  , (60 * 60 * 24) * 1000); // once a day
-		bot.sendMessage(chatId, `Prerender started!`);
+		bot.sendMessage(chatId, `Prerender started!\n\n${help}`);
 	},
 
 	requestReceived: function(req, res, next) {
@@ -93,6 +102,3 @@ module.exports = {
 		next();
 	},
 };
-
-
-
